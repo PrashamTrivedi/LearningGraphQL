@@ -5,14 +5,21 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@graphql-tools/schema": "^8.3.14",
+    "apollo-server": "^3.9.0",
+    "graphiql": "^1.9.9",
     "graphql": "^16.5.0",
-    "graphql-tools": "^8.2.12"
+    "graphql-tools": "^8.2.12",
+    "pg": "^8.7.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
   }
 }

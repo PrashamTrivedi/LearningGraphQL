@@ -1,27 +1,12 @@
-import {graphql} from "graphql"
-import {makeExecutableSchema} from "@graphql-tools/schema"
 
-const typeDefs = `
-schema {
-    query: Query
-}
-type Query {
-    hello: String
-    kenobi: String
-}
-`
+import {ApolloServer} from 'apollo-server'
+import typeDefs from "./typedefs.js"
+import resolvers from "./resolvers.js"
 
-const resolvers = {
-    Query: {
-        hello: () => "there",
-        kenobi: () => "General Kenooobbbiii!!!!"
-    }
-}
+const server = new ApolloServer({
+    typeDefs, resolvers, csrfPrevention: true,
+})
 
-const schema = makeExecutableSchema({typeDefs, resolvers})
-
-const query = process.argv[2]
-
-graphql({schema, source: query}).then(result => {
-    console.log(JSON.stringify(result, null, 4))
+server.listen().then(({url}) => {
+    console.log(`🚀  Server ready at ${url}`)
 })
