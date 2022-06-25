@@ -1,6 +1,6 @@
 import {gql} from "apollo-server"
 
-const typeDefs = `
+const typeDefs = gql`
 schema{
     query: Query
 }
@@ -15,6 +15,11 @@ type Book{
     rating: Float
     subtitle: String!
     ratingCount: Float
+    authors: [Author]
+}
+type Author{
+    id: ID!
+    name: String
 }
 
 enum ImageSize{

@@ -17,7 +17,8 @@
     "graphiql": "^1.9.9",
     "graphql": "^16.5.0",
     "graphql-tools": "^8.2.12",
-    "pg": "^8.7.3"
+    "pg": "^8.7.3",
+    "dataloader":"2.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.18"

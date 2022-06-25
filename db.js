@@ -11,6 +11,7 @@ async function query(sql, params) {
     const client = await pool.connect()
     try {
         console.log(sql)
+        console.log(params)
         const dbResponse = await client.query(sql, params)
         console.log({rows: dbResponse.rows, rowCount: dbResponse.rowCount})
         return dbResponse
