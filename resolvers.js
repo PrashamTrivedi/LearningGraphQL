@@ -1,7 +1,8 @@
-import {allBooks} from './book.js'
+import {allBooks, imageUrl} from './book.js'
 const resolvers = {
     Book: {
-
+        ratingCount: book => book.rating_count,
+        imageUrl: (book, {size}) => imageUrl(size, book.id)
     },
     Query: {
         books: () => {
