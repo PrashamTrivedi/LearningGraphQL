@@ -11,7 +11,7 @@ type Book{
     id: ID!
     title: String!
     description: String!
-    imageUrl: String!
+    imageUrl: String
     rating: Float
 }
 `
