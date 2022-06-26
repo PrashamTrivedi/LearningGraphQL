@@ -1,5 +1,5 @@
 import {allBooks, imageUrl, getBookById} from './book.js'
-import {getAllReviews} from "./reviews.js"
+import {createReview, getAllReviews} from "./reviews.js"
 const resolvers = {
     Book: {
         createdAt: book => book.created_at,
@@ -39,6 +39,12 @@ const resolvers = {
         },
         book: (root, {id}, context) => {
             return getBookById(id)
+        }
+    },
+    Mutation: {
+        createReview: (root, args) => {
+            const {reviewInput} = args
+            return createReview(reviewInput)
         }
     }
 }

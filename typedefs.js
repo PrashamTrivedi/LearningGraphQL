@@ -3,6 +3,7 @@ import {gql} from "apollo-server"
 const typeDefs = gql`
 schema{
     query: Query
+    mutation: Mutation
 }
 type Query{
     books(orderBy: BookSorting = CREATED_AT_DESC): [Book]
@@ -57,7 +58,17 @@ enum RatingSorting{
     CREATED_AT_DESC
 }
 
-
+type Mutation{
+    createReview(reviewInput:ReviewInput!):Review
+}
+input ReviewInput{
+    bookId: ID!
+    email:String!
+    rating: Int!
+    title: String!
+    comment: String
+    name: String!
+}
 `
 
 export default typeDefs

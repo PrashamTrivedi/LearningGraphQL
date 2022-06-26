@@ -32,6 +32,20 @@ export async function getAllReviews(args) {
     }
 }
 
+export async function createReview(reviewInput) {
+    const {bookId, email, rating, title, comment, name} = reviewInput
+    console.log(reviewInput)
+    const sql = `select * from hb.create_review ($1,$2,$3,$4,$5,$6)`
+    const params = [bookId, email, name, rating, title, comment]
+    try {
+        const result = await query(sql, params)
+        return result?.rows[0]
+    } catch (err) {
+        console.error(err)
+        throw err
+
+    }
+}
 
 export function reviewsByIdLoader() {
     return new DataLoader(getReviewByBookIds)
