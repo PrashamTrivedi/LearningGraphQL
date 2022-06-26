@@ -6,6 +6,7 @@ schema{
 }
 type Query{
     books: [Book]
+    reviews: [Review]
 }
 type Book{
     id: ID!
@@ -16,9 +17,24 @@ type Book{
     subtitle: String!
     ratingCount: Float
     authors: [Author]
+    
 }
 type Author{
     id: ID!
+    name: String
+}
+type Review{
+    id: ID!
+    rating: Int
+    title: String
+    comment: String
+    books: [Book]
+    users: [User]
+}
+
+type User{
+    id: ID!
+    email: String
     name: String
 }
 
