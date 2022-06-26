@@ -29,16 +29,29 @@ export async function getAllBooksFromIds(bookIds) {
     try {
         const result = await query(sql, params)
 
-        return bookIds.map(id => result?.rows.filter(row => row.id === id))
+        const retVal = bookIds.map(id => result?.rows.filter(row => row.id == id))
+        return retVal
     } catch (err) {
         console.error(err)
         throw err
-
     }
 }
 
 export function booksByIdsLoader() {
     return new DataLoader(getAllBooksFromIds)
+}
+
+export async function getBookById(bookId) {
+    const sql = `select * from hb.book where id=$1`
+    const params = [bookId]
+    try {
+        const result = await query(sql, params)
+        return result?.rows[0]
+    } catch (err) {
+        console.error(err)
+        throw err
+
+    }
 }
 
 
