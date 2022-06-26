@@ -1,6 +1,9 @@
-import {allBooks, imageUrl, getBookById} from './book.js'
+import {allBooks, imageUrl, getBookById, searchBook, addBook, addBookByGoogleId} from './book.js'
 import {createReview, getAllReviews} from "./reviews.js"
 const resolvers = {
+    SearchBookResult: {
+        imageUrl: (result, {size}) => imageUrl(size, result.id),
+    },
     Book: {
         createdAt: book => book.created_at,
         ratingCount: book => book.rating_count,
@@ -39,12 +42,24 @@ const resolvers = {
         },
         book: (root, {id}, context) => {
             return getBookById(id)
+        },
+        searchBook: (root, {searchQuery}, context) => {
+            return searchBook(searchQuery)
         }
     },
     Mutation: {
         createReview: (root, args) => {
             const {reviewInput} = args
             return createReview(reviewInput)
+        },
+        addBook: (root, args) => {
+            const {bookInput} = args
+            return addBook(bookInput)
+        },
+        addBookByBookId: (root, args) => {
+            const {googleBookId} = args
+            return addBookByGoogleId(googleBookId)
+
         }
     }
 }

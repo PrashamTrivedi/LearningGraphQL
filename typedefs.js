@@ -9,6 +9,16 @@ type Query{
     books(orderBy: BookSorting = CREATED_AT_DESC): [Book]
     reviews(orderBy: RatingSorting = CREATED_AT_DESC): [Review]
     book(id:ID!): Book
+    searchBook(searchQuery:String!):[SearchBookResult]
+}
+type SearchBookResult{
+    id: ID!
+    title: String
+    description: String
+    authors: [String]
+    imageUrl(size:ImageSize=LARGE): String
+    pageCount: Int
+    subtitle: String
 }
 type Book{
     id: ID!
@@ -60,6 +70,8 @@ enum RatingSorting{
 
 type Mutation{
     createReview(reviewInput:ReviewInput!):Review
+    addBook(bookInput:BookInput!):Book
+    addBookByBookId(googleBookId:String!):Book
 }
 input ReviewInput{
     bookId: ID!
@@ -68,6 +80,14 @@ input ReviewInput{
     title: String!
     comment: String
     name: String!
+}
+input BookInput{
+    googleBookId:ID!,
+    title:String!
+    subtitle:String
+    description: String
+    authors:[String!]
+    pageCount: Int!
 }
 `
 
