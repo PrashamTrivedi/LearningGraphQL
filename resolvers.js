@@ -1,5 +1,4 @@
-import {getAuthorByBooks} from "./author.js"
-import {allBooks, imageUrl} from './book.js'
+import {allBooks, imageUrl, getBookById} from './book.js'
 import {getAllReviews} from "./reviews.js"
 const resolvers = {
     Book: {
@@ -34,6 +33,9 @@ const resolvers = {
         },
         reviews: (root, args) => {
             return getAllReviews(args)
+        },
+        book: (root, {id}, context) => {
+            return getBookById(id)
         }
     }
 }

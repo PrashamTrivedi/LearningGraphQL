@@ -7,6 +7,7 @@ schema{
 type Query{
     books(orderBy: BookSorting = CREATED_AT_DESC): [Book]
     reviews(orderBy: RatingSorting = CREATED_AT_DESC): [Review]
+    book(id:ID!): Book
 }
 type Book{
     id: ID!
