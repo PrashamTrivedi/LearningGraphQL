@@ -3,6 +3,7 @@ import {allBooks, imageUrl} from './book.js'
 import {getAllReviews} from "./reviews.js"
 const resolvers = {
     Book: {
+        createdAt: book => book.created_at,
         ratingCount: book => book.rating_count,
         imageUrl: (book, {size}) => imageUrl(size, book.id),
         authors: (book, args, context) => {
@@ -14,6 +15,7 @@ const resolvers = {
         },
     },
     Review: {
+        createdAt: review => review.created_at,
         books: (review, args, context) => {
             const {loaders} = context
             const {findBooksByIdsLoader} = loaders
@@ -27,11 +29,11 @@ const resolvers = {
 
     },
     Query: {
-        books: () => {
-            return allBooks()
+        books: (root, args) => {
+            return allBooks(args)
         },
-        reviews: () => {
-            return getAllReviews()
+        reviews: (root, args) => {
+            return getAllReviews(args)
         }
     }
 }

@@ -1,8 +1,14 @@
 import DataLoader from "dataloader"
 import query from './db.js'
 
-export async function allBooks() {
-    const sql = `select * from hb.book`
+const orderBy = {
+    RATING_DESC: 'rating desc',
+    CREATED_AT_DESC: 'created_at desc',
+    CREATED_AT_ASC: 'created_at'
+}
+export async function allBooks(args) {
+    const orderByClause = orderBy[args.orderBy]
+    const sql = `select * from hb.book order by ${orderByClause}`
     try {
         const result = await query(sql)
         return result?.rows

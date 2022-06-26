@@ -5,8 +5,8 @@ schema{
     query: Query
 }
 type Query{
-    books: [Book]
-    reviews: [Review]
+    books(orderBy: BookSorting = CREATED_AT_DESC): [Book]
+    reviews(orderBy: RatingSorting = CREATED_AT_DESC): [Review]
 }
 type Book{
     id: ID!
@@ -17,7 +17,7 @@ type Book{
     subtitle: String!
     ratingCount: Float
     authors: [Author]
-    
+    createdAt: String
 }
 type Author{
     id: ID!
@@ -30,6 +30,7 @@ type Review{
     comment: String
     books: [Book]
     users: [User]
+    createdAt: String
 }
 
 type User{
@@ -42,6 +43,19 @@ enum ImageSize{
     SMALL
     LARGE
 }
+
+enum BookSorting{
+    RATING_DESC
+    CREATED_AT_DESC
+    CREATED_AT_ASC
+}
+
+enum RatingSorting{
+    CREATED_AT_ASC
+    CREATED_AT_DESC
+}
+
+
 `
 
 export default typeDefs
