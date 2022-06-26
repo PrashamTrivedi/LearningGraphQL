@@ -9,9 +9,12 @@ const resolvers = {
             const {loaders} = context
             const {findAuthorsByBookIdsLoader} = loaders
             return findAuthorsByBookIdsLoader.load(book.id)
-            // return testLoad
-            // getAuthorByBooks(book.id)},
         },
+        reviews: (book, args, context) => {
+            const {loaders} = context
+            const {findReviewsByIdsLoader} = loaders
+            return findReviewsByIdsLoader.load(book.id)
+        }
     },
     Review: {
         createdAt: review => review.created_at,

@@ -19,6 +19,7 @@ type Book{
     ratingCount: Float
     authors: [Author]
     createdAt: String
+    reviews: [Review]
 }
 type Author{
     id: ID!
